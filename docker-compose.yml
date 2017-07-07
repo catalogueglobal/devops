@@ -1,0 +1,36 @@
+version: '2'
+services:
+    catalogue-dt-server:
+        image: catalogue-server
+        container_name: local_catalogue-server
+#        ports:
+#            - 14200:4200
+        environment:
+             - JAVA_OPTS=-Xmx2048M
+             - LOG_APPENDER=ASYNC
+             - LOG_PATH=/var/log/datatools-server/
+        volumes:
+            - ./datatools-server/conf:/conf
+            - ./catalogue/datatools-server/log:/var/log/datatools-server
+            - ./catalogue/datatools-server/tmp:/tmp
+    catalogue-metadata:
+        image: metadata
+        container_name: local_catalogue-metadata
+#        ports:
+#            - 14400:4400
+        environment:
+             - JAVA_OPTS=-Xmx512M
+             - LOG_APPENDER=ASYNC
+             - LOG_PATH=/var/log/metadata/
+             # - CONFIG_FILE=/some_path/config.yml
+        volumes:
+            - ./catalogue/catalogue-metadata/data:/root/data
+            - ./catalogue/catalogue-metadata/log:/var/log/metadata
+    catalogue-ui:
+        image: catalogue-ui
+        container_name: local_catalogue-ui
+        ports:
+            - 1081:80
+        volumes:
+            - ./nginx/:/etc/nginx/conf.d/
+            - ./catalogue/catalogue-ui/nginx-logs:/var/log/nginx
