@@ -10,9 +10,13 @@ services:
              - LOG_APPENDER=ASYNC
              - LOG_PATH=/var/log/datatools-server/
         volumes:
-            - ./datatools-server/conf:/conf
+            - ./catalogue/datatools-server/conf:/conf
             - ./catalogue/datatools-server/log:/var/log/datatools-server
             - ./catalogue/datatools-server/tmp:/tmp
+    catalogue-postgresql:
+            extends:
+                file: postgresql.yml
+                service: catalogue-postgresql
     catalogue-metadata:
         image: metadata
         container_name: local_catalogue-metadata
@@ -32,5 +36,6 @@ services:
         ports:
             - 1081:80
         volumes:
-            - ./nginx/:/etc/nginx/conf.d/
+            - ./catalogue/nginx/:/etc/nginx/conf.d/
+            - ./catalogue/catalogue-ui/conf:/usr/share/nginx/html/conf
             - ./catalogue/catalogue-ui/nginx-logs:/var/log/nginx

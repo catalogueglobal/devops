@@ -1,0 +1,12 @@
+version: '2'
+services:
+    catalogue-postgresql:
+        container_name: local_catalogue-postgresql
+        image: postgres:9.5
+        # volumes:
+        #     - ~/postgresql/:/var/lib/postgresql/
+        environment:
+            - POSTGRES_USER=catalogue
+            - POSTGRES_PASSWORD=
+        #ports:
+        #    -  15434:5432

@@ -1,32 +1,26 @@
 application:
-  assets_bucket: cataloguedata
-  public_url: http://localhost:9000
+  assets_bucket: datatools-staging # dist directory
+  public_url: http://localhost:9966
   port: 4200
   data:
     mapdb: /tmp/data/mapdb
     gtfs: /tmp/data/gtfs
     editor_mapdb: /tmp/data/editor
-    regions: /tmp/data/geojson
+    regions: /tmp/data/regions
 #    gtfs_s3_bucket: cataloguedata
 #    s3_region: eu-west-1
 #    s3_credentials_file: /conf/aws_credentials
+#    aws_role: arn:aws:iam::${AWS_ACCOUNT_NUMBER}:role/${AWS_ROLE_NAME}
     use_s3_storage: false
 modules:
   enterprise:
     enabled: false
   editor:
     enabled: true
-  alerts:
-    enabled: false
-    use_extension: xyz
-  sign_config:
-    enabled: false
   user_admin:
     enabled: true
   validator:
     enabled: true
-  deployment:
-    enabled: false
   gtfsapi:
     enabled: true
     load_on_fetch: false

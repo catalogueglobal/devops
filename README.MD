@@ -46,7 +46,7 @@ copy datatools-server/conf/env.yml.tmp to datatools-server/conf/env.yml and fill
 - No GTFS files
 - Upload on local file storage (S3 storage disabled)
 
-**ALTERNATIVE**
+**ALTERNATIVE WITH THE CMD LINE**
 
 in datatools-server : 
 
