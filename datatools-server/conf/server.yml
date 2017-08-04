@@ -16,11 +16,11 @@ modules:
   enterprise:
     enabled: false
   editor:
-    enabled: true
+    enabled: false
   user_admin:
     enabled: true
   validator:
-    enabled: true
+    enabled: false
   gtfsapi:
     enabled: true
     load_on_fetch: false
