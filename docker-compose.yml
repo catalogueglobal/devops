@@ -10,13 +10,17 @@ services:
              - LOG_APPENDER=ASYNC
              - LOG_PATH=/var/log/datatools-server/
         volumes:
-            - ./catalogue/datatools-server/conf:/conf
-            - ./catalogue/datatools-server/log:/var/log/datatools-server
-            - ./catalogue/datatools-server/tmp:/tmp
+            - ./datatools-server/conf:/conf
+            - ./datatools-server/log:/var/log/datatools-server
+            - ./datatools-server/tmp:/tmp
     catalogue-postgresql:
             extends:
                 file: postgresql.yml
                 service: catalogue-postgresql
+    catalogue-mongodb:
+            extends:
+                file: mongodb.yml
+                service: catalogue-mongodb
     catalogue-metadata:
         image: metadata
         container_name: local_catalogue-metadata
@@ -28,14 +32,14 @@ services:
              - LOG_PATH=/var/log/metadata/
              # - CONFIG_FILE=/some_path/config.yml
         volumes:
-            - ./catalogue/catalogue-metadata/data:/root/data
-            - ./catalogue/catalogue-metadata/log:/var/log/metadata
+            - ./catalogue-metadata/data:/root/data
+            - ./catalogue-metadata/log:/var/log/metadata
     catalogue-ui:
         image: catalogue-ui
         container_name: local_catalogue-ui
         ports:
             - 1081:80
         volumes:
-            - ./catalogue/nginx/:/etc/nginx/conf.d/
-            - ./catalogue/catalogue-ui/conf:/usr/share/nginx/html/conf
-            - ./catalogue/catalogue-ui/nginx-logs:/var/log/nginx
+            - ./nginx/:/etc/nginx/conf.d/
+            - ./catalogue-ui/conf:/usr/share/nginx/html/conf
+            - ./catalogue-ui/nginx-logs:/var/log/nginx

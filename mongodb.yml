@@ -1,0 +1,9 @@
+version: '2'
+services:
+    catalogue-mongodb:
+        container_name: local_catalogue-mongodb
+        image: mongo:3.4
+        # volumes:
+        #     - ~/mongodb/:/data/db/
+        #ports:
+        #    -  27017:27017
